@@ -17,7 +17,7 @@ def gerador_alfanumerico(tamanho=10, caracteres=string.ascii_letters + string.di
 
 print('-'*50)
 print('|', ' '*46, '|')
-print('|', ' '*15, 'Randpass (v1.0)', ' '*14, '|')
+print('|', ' '*15, 'Randpass (v1.0 - 8/7/24)', ' '*14, '|')
 print('|', ' '*46, '|')
 print('-'*50)
 
@@ -40,9 +40,15 @@ if opt == 1:
         conf = str(input('Você gostaria de criar Outra Senha? [Y/N]: ')).upper().strip()[0]
         if conf == 'N':
             break
+        elif conf != 'Y' and 'N':
+            print('[Erro] Tente novamente')
+elif opt == 2:
+    modpass = str(input('Digite a Sequûencia que você queira modificar: '))
+    print(gerador_alfanumerico(modpass.lenght(), modpass))
 
 print('-'*15,'fim de execução', '-'*15)
-
+print('')
+print('Criado por Gustavo André ')
 #print(qtdpass)
 
 #Depois, terá opções para usos dos caracteres
@@ -56,3 +62,4 @@ print('-'*15,'fim de execução', '-'*15)
 # Comentários
 
 # Criar um script para diferentes Linguagens. Ex: Html/Css(site)
+#mudei de ideia sobre uma coisa, vou criar um encriptador. no final. essa é a real função
