@@ -1,4 +1,4 @@
-#   Gerador de Senhas(v1.0)
+#   Randpass (v1.0)
 
 import random
 import string
@@ -8,21 +8,23 @@ import string
 #Idealização
 # 1. Criar uma lista para senhas criadas 
 # 2. Criação de comandos para deixar o programa mais interativo para quem é acostumado com atalhos
-# 3. Terá duas caixas interativas. Uma perguntando em até quantos caracteres será a senha a segunda, é para caso o usuário tenha alguma senha em mente e apenas queira 'criptogafa-lá'
+# 3. Terá duas caixas interativas. Uma perguntando em até quantos caracteres será a senha e a segunda, é para caso o usuário tenha alguma senha em mente e apenas queira modifica-lá ou criptografar a senha
 
-def gerador_alfanumerico(tamanho=10, caracteres=string.ascii_letters + string.digits):
+
+def gerador_alfanumerico(tamanho=10, caracteres=string.ascii_letters + string.digits + string.printable):
     return ''.join(random.choice(caracteres) for _ in range(tamanho))
 
-# print(gerador_alfanumerico())
+listpass = []
 
 print('-'*50)
 print('|', ' '*46, '|')
-print('|', ' '*15, 'Randpass (v1.0 - 8/7/24)', ' '*14, '|')
+print('|', ' '*11, 'Randpass (v1.0 - 8/7/24)', ' '*9, '|')
 print('|', ' '*46, '|')
 print('-'*50)
+print('')
 
-
-print(' '*16, 'O que você deseja?')
+print(' '*11, 'O que você deseja fazer?')
+print('')
 print('-'*50)
 print(' ')
 print('1. Criar Nova senha')
@@ -35,13 +37,35 @@ print('-'*50)
 if opt == 1:
     while True:
         qtdpass = int(input('Quantos caracteres serão usados?: '))
-        print(gerador_alfanumerico(qtdpass))
+
+        pasw = str(gerador_alfanumerico(qtdpass))
+        print(pasw)
+        print('')
 
         conf = str(input('Você gostaria de criar Outra Senha? [Y/N]: ')).upper().strip()[0]
         if conf == 'N':
             break
         elif conf != 'Y' and 'N':
-            print('[Erro] Tente novamente')
+            res = ''
+            while conf != 'Y' and 'N':
+                print('[Erro] Tente novamente')
+                conf = str(input('Você gostaria de criar Outra Senha? [Y/N]: ')).upper().strip()[0]
+                print('')
+                if conf == 'N':
+                    res += conf
+                    break
+            if res == 'N':
+                break
+            
+        
+    save = str(input('Você deseja Salvar a Senha? [Y/N]: ')).upper().strip()[0]
+    if save == 'Y':
+        listpass.append(pasw)
+        print(listpass[0])
+    print('-'*50)
+# parei aqui
+
+
 elif opt == 2:
     modpass = str(input('Digite a Sequûencia que você queira modificar: '))
     print(gerador_alfanumerico(modpass.lenght(), modpass))
@@ -53,7 +77,7 @@ print('Criado por Gustavo André ')
 
 #Depois, terá opções para usos dos caracteres
 
-#Alfabético
+#Alfabético 
 #Numerico
 #AlfaNumerico
 #Alfanumerico com Caracteres especiais
