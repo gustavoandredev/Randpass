@@ -14,6 +14,9 @@ import string
 def gerador_alfanumerico(tamanho=10, caracteres=string.ascii_letters + string.digits + string.printable):
     return ''.join(random.choice(caracteres) for _ in range(tamanho))
 
+def gerador_alfanumerico_pass(modpass, tamanho=10, caracteres=string.ascii_letters + string.digits + string.printable):
+    return modpass.join(random.choice(caracteres) for _ in range(tamanho))
+
 listpass = []
 
 print('-'*50)
@@ -29,6 +32,7 @@ print('-'*50)
 print(' ')
 print('1. Criar Nova senha')
 print('2. Modificar uma Senha já criada')
+print('0. Sair')
 print('')
 print('-'*50)
 
@@ -61,14 +65,14 @@ if opt == 1:
     save = str(input('Você deseja Salvar a Senha? [Y/N]: ')).upper().strip()[0]
     if save == 'Y':
         listpass.append(pasw)
-        print(listpass[0])
+        print(f'Sua Senha: ', listpass[0])
     print('-'*50)
 # parei aqui
 
 
 elif opt == 2:
     modpass = str(input('Digite a Sequûencia que você queira modificar: '))
-    print(gerador_alfanumerico(modpass.lenght(), modpass))
+    print(gerador_alfanumerico_pass(modpass, len(modpass)))
 
 print('-'*15,'fim de execução', '-'*15)
 print('')
